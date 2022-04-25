@@ -8,7 +8,7 @@ const newToken = (user) => {
     return jwt.sign({ user }, process.env.JWT_SECRET_KEY);
 };
 
-router.post("/post",async(req,res)=>{
+router.post("/",async(req,res)=>{
     try{
         const user = await User.create(req.body)
         const token = newToken(user);
@@ -18,7 +18,7 @@ router.post("/post",async(req,res)=>{
         return res.status(400).json(err.message)
     }
 })
-router.get('/all', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const user = await User.find().lean().exec();
         return res.status(200).json(user)

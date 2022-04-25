@@ -12,7 +12,7 @@ async function residentHere(Address, resident = []){
     return resident;
 }
 
-router.post("/post", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const address = await Address.findOne({userId : req.body.userId}).lean().exec();
     if(address){
@@ -25,7 +25,7 @@ router.post("/post", async (req, res) => {
   }
 });
 
-router.get('/all', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const page = req.query.page || 1;
     const size = req.query.size || 15;
