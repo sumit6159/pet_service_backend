@@ -4,7 +4,7 @@ const Resident = require("../model/data.model");
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+router.post("/post", async (req, res) => {
   try {
     const data = await Resident.findOne({addressId : req.body.addressId}).lean().exec();
     if(data){
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
     return res.status(400).json(err.message);
   }
 });
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
   try {
     const residentData = await Resident.find()
     .populate({path : 'addressId'})
